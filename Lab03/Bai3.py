@@ -13,16 +13,12 @@ class Student(ABC):
         pass
     def graduationEligibility(self)->bool:
         pass
-    def getGPA(self):
-        return self._gpa
-    def getCredits(self):
-        return self._credits
+   
     
 class SecondDegreeStudent(Student):
-    def __init__(self, studentID, name, address, credits, gpa, nameOfThesis, thesisScore):
+    def __init__(self, studentID, name, address, credits, gpa, graduateScore):
             super().__init__(studentID, name, address, credits, gpa)
-            self._nameOfThesis = nameOfThesis
-            self._thesisScore = thesisScore
+            self._graduateScore = graduateScore
 
     def displayInfo(self):
             print(f"Student ID: {self._studentID}")
@@ -30,13 +26,17 @@ class SecondDegreeStudent(Student):
             print(f"Address: {self._address}")
             print(f"Credits: {self._credits}")
             print(f"GPA: {self._gpa}")
-            print(f"Thesis Name: {self._nameOfThesis}")
-            print(f"Thesis Score: {self._thesisScore}")
+            print(f"Graduate Score: {self._graduateScore}")
+    
+    def graduationEligibility(self)->bool:
+            return self._gpa >= 5.0 and self._graduateScore >= 5.0 and self._credits >= 84
+
 
 class undergraduateStudent(Student):
-    def __init__(self, studentID, name, address, credits, gpa, graduateScore):
+    def __init__(self, studentID, name, address, credits, gpa, nameOfThesis, thesisScore):
             super().__init__(studentID, name, address, credits, gpa)
-            self._graduateScore = graduateScore
+            self._nameOfThesis = nameOfThesis
+            self._thesisScore = thesisScore
 
     def displayInfo(self):
             print(f"Student ID: {self._studentID}")
@@ -67,4 +67,4 @@ if __name__ == "__main__":
 
     """Cau 3: Liet ke sinh vien du dieu kien tot nghiep"""
     print("Danh sach sinh vien du dieu kien tot nghiep:")  
-    
+
