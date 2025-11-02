@@ -101,8 +101,14 @@ if __name__ == "__main__":
 
     """Cau 5: Tim ma nhan vien co tong luong lon nhat"""
     print("\n===== Highest Paid Staff =====")
-    sortedStaffby_salary = sorted(listStaff, key=lambda staff: staff.calculateSalary(), reverse=True)
-    highestPaidStaff = sortedStaffby_salary[0]
+    listHighestPaidStaff = []
+    #sortedStaffby_salary = sorted(listStaff, key=lambda staff: staff.calculateSalary(), reverse=True)
+    
+    highestPaidStaff = max(listStaff, key=lambda staff: staff.calculateSalary())
+    for staff in listStaff:
+        if staff.calculateSalary() == highestPaidStaff.calculateSalary():
+            listHighestPaidStaff.append(staff)
+            
     print(f"Highest paid staff is {highestPaidStaff.getName()} with total salary: {highestPaidStaff.calculateSalary()}")
 
     """Cau 6: Cap nhat lai luong co ban theo ma nhan vien"""
