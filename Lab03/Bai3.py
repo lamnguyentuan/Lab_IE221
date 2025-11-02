@@ -64,3 +64,7 @@ if __name__ == "__main__":
     for student in listStudent:
         student.displayInfo()
         print("-----------------------")
+
+    """Cau 3: Liet ke sinh vien du dieu kien tot nghiep"""
+    print("Danh sach sinh vien du dieu kien tot nghiep:")  
+    
