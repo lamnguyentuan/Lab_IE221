@@ -92,4 +92,37 @@ if __name__ == "__main__":
             print("-----------------------")
     """Cau 5: Tim sinh vien undergraduate co GPA cao nhat"""
     top_undergraduate = None
-    
+    highestStudentGPA = []
+    highest_gpa = max((student.getGPA() for student in listStudent if isinstance(student, undergraduateStudent)), default=None)
+
+    for student in listStudent:
+        if isinstance(student, undergraduateStudent) and student.getGPA() == highest_gpa:
+            highestStudentGPA.append(student)
+
+    for student in highestStudentGPA:
+        print(f"Student ID: {student.getStudentID()}, Name: {student.getName()}, GPA: {student.getGPA()}")
+    print("-----------------------")
+    """Cau 6: Xet tot nghiep """
+    print("Ket qua xet tot nghiep:")
+    for student in listStudent:
+        if student.graduationEligibility():
+            print(f"Student ID: {student.getStudentID()} - {student.getName()} is eligible for graduation.")
+        else:
+            print(f"Student ID: {student.getStudentID()} - {student.getName()} is NOT eligible for graduation.")
+        print("-----------------------")
+    """Cau 7: Tim sinh vien chua du dieu kien tot nghiep"""
+    print("Sinh vien chua du dieu kien tot nghiep:")
+    for student in listStudent:
+        if not student.graduationEligibility():
+            print(f"Student ID: {student.getStudentID()} - {student.getName()}")
+            print("-----------------------")
+    print("-----------------------")
+    """Cau 8: Tim sinh vien du dieu kien tot nghiep"""
+    print("Sinh vien du dieu kien tot nghiep:")
+    for student in listStudent:
+        if student.graduationEligibility():
+            print(f"Student ID: {student.getStudentID()} - {student.getName()}")
+            print("-----------------------")
+    print("-----------------------")
+
+
