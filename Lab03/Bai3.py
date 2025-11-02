@@ -78,11 +78,11 @@ if __name__ == "__main__":
     """Cau 3: Liet ke sinh vien du dieu kien tot nghiep"""
     print("Danh sach sinh vien du dieu kien tot nghiep:")  
     print("-----------------------")
-    for student in listStudent:
-        if student.graduationEligibility():
-            print(f"Student ID: {student.getStudentID()}, Name: {student.getName()}")
-            print("-----------------------")
-
+    eligible_students = list(filter(lambda s: s.graduationEligibility(), listStudent))
+    for student in eligible_students:
+        print(f"Student ID: {student.getStudentID()}, Name: {student.getName()}")
+        print("-----------------------")
+        
     """Cau 4: Liet ke sinh vien khong du dieu kien tot nghiep"""
     print("Danh sach sinh vien khong du dieu kien tot nghiep:")
     print("-----------------------")
