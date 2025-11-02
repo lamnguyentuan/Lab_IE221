@@ -11,7 +11,7 @@ class Program:
         self.__EnglishCertificateRequired = True
 
     def displayProgramInfo(self):
-        print(f"Program ID: {self.__programID}\nProgram Name: {self.__programName}\nCredits Required: {self.__creditsRequired}\nEnglish Credits Required: {self.__EnglishCreditsRequired}")
+        print(f"ID Chương trình: {self.__programID}\nTên Chương trình: {self.__programName}\nTín chỉ yêu cầu: {self.__creditsRequired}\nTín chỉ Tiếng Anh yêu cầu: {self.__EnglishCreditsRequired}")
     
     def getCreditsRequired(self):
         return self.__creditsRequired + self.__EnglishCreditsRequired
@@ -90,19 +90,19 @@ class Student:
         self.updateGPA() 
         programCreditsRequired = self.__program.getCreditsRequired()
         if self.canGraduate():
-            print(f"Student {self.__name} (ID: {self.__studentID}) is eligible to graduate.")
-            print(f"Total Completed Credits: {self.__completedCredits}, GPA: {self.__gpa:.2f}, English Credits Completed: {self.__EnglishCreditsCompleted}, English Certificate: {self.__TypeOfCertificate}")
+            print(f"Sinh viên {self.__name} (ID: {self.__studentID}) ĐỦ ĐIỀU KIỆN TỐT NGHIỆP.")
+            print(f"Tổng tín chỉ hoàn thành: {self.__completedCredits}, Điểm GPA: {self.__gpa:.2f}, Tín chỉ Tiếng Anh: {self.__EnglishCreditsCompleted}, Chứng chỉ Tiếng Anh: {self.__TypeOfCertificate}")
         else:
-            print(f"Student {self.__name} (ID: {self.__studentID}) is NOT eligible to graduate.")
-            print(f"Reasons: ", end="")
+            print(f"Sinh viên {self.__name} (ID: {self.__studentID}) KHÔNG ĐỦ ĐIỀU KIỆN TỐT NGHIỆP.")
+            print(f"Lý do: ", end="")
             if self.__completedCredits < programCreditsRequired:
-                print(f"Insufficient credits ({self.__completedCredits}/{programCreditsRequired}). ", end="")
+                print(f"Thiếu tín chỉ ({self.__completedCredits}/{programCreditsRequired}). ", end="")
             if self.__gpa < 5.0:
-                print(f"Low GPA ({self.__gpa:.2f}). ", end="")
+                print(f"Điểm GPA quá thấp ({self.__gpa:.2f}). ", end="")
             if len(self.__failedCourses) > 0:
-                print(f"Failed courses: {', '.join(self.__failedCourses)}. ", end="")   
+                print(f"Có môn rớt: {', '.join(self.__failedCourses)}. ", end="")   
             if not self.__isEnglishCertificate or self.__EnglishCreditsCompleted < 12:
-                print(f"Insufficient English requirements. ", end="")
+                print(f"Không đủ yêu cầu tiếng Anh. ", end="")
 
 if __name__ == "__main__":
     """ Initialize Program """

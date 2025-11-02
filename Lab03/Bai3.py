@@ -27,12 +27,12 @@ class SecondDegreeStudent(Student):
             self._graduateScore = graduateScore
 
     def displayInfo(self):
-            print(f"Student ID: {self._studentID}")
-            print(f"Name: {self._name}")
-            print(f"Address: {self._address}")
-            print(f"Credits: {self._credits}")
-            print(f"GPA: {self._gpa}")
-            print(f"Graduate Score: {self._graduateScore}")
+            print(f"Mã sinh viên: {self._studentID}")
+            print(f"Tên: {self._name}")
+            print(f"Địa chỉ: {self._address}")
+            print(f"Tín chỉ: {self._credits}")
+            print(f"Điểm GPA: {self._gpa}")
+            print(f"Điểm tốt nghiệp: {self._graduateScore}")
     
     def graduationEligibility(self)->bool:
             return self._gpa >= 5.0 and self._graduateScore >= 5.0 and self._credits >= 84
@@ -45,13 +45,13 @@ class undergraduateStudent(Student):
             self._thesisScore = thesisScore
 
     def displayInfo(self):
-            print(f"Student ID: {self._studentID}")
-            print(f"Name: {self._name}")
-            print(f"Address: {self._address}")
-            print(f"Credits: {self._credits}")
-            print(f"GPA: {self._gpa}")
-            print(f"Thesis Name: {self._nameOfThesis}")
-            print(f"Thesis Score: {self._thesisScore}")
+            print(f"Mã sinh viên: {self._studentID}")
+            print(f"Tên: {self._name}")
+            print(f"Địa chỉ: {self._address}")
+            print(f"Tín chỉ: {self._credits}")
+            print(f"Điểm GPA: {self._gpa}")
+            print(f"Tên luận văn: {self._nameOfThesis}")
+            print(f"Điểm luận văn: {self._thesisScore}")
     def graduationEligibility(self)->bool:
             return self._gpa >= 5.0 and self._thesisScore >= 5.0 and self._credits >= 120
 
@@ -69,57 +69,58 @@ if __name__ == "__main__":
     ]
 
     """Cau 2: Hien thi thong tin tat ca sinh vien"""
-    print("Thong tin tat ca sinh vien:")
+    print("Thông tin tất cả sinh viên:")
     print("-----------------------")
     for student in listStudent:
         student.displayInfo()
         print("-----------------------")
 
     """Cau 3: Liet ke sinh vien du dieu kien tot nghiep"""
-    print("Danh sach sinh vien du dieu kien tot nghiep:")  
+    print("Danh sách sinh viên đủ điều kiện tốt nghiệp:")  
     print("-----------------------")
     eligible_students = list(filter(lambda s: s.graduationEligibility(), listStudent))
     for student in eligible_students:
-        print(f"Student ID: {student.getStudentID()}, Name: {student.getName()}")
-        print("-----------------------")
+        print(f"Mã sinh viên: {student.getStudentID()}, Tên: {student.getName()}\n")
         
+
     """Cau 4: Liet ke sinh vien khong du dieu kien tot nghiep"""
-    print("Danh sach sinh vien khong du dieu kien tot nghiep:")
+    print("Danh sách sinh viên không đủ điều kiện tốt nghiệp:")
     print("-----------------------")
     for student in listStudent:
         if not student.graduationEligibility():
-            print(f"Student ID: {student.getStudentID()}, Name: {student.getName()}")
-            print("-----------------------")
+            print(f"Mã sinh viên: {student.getStudentID()}, Tên: {student.getName()}\n")
+    
     """Cau 5: Tim sinh vien undergraduate co GPA cao nhat"""
     top_undergraduate = None
     undergraduateStudents = list(filter(lambda s: isinstance(s, undergraduateStudent), listStudent))
     highest_gpa = max(undergraduateStudents, key=lambda s: s.getGPA()).getGPA()
     top_undergraduate_students = list(filter(lambda s: s.getGPA() == highest_gpa, undergraduateStudents))
-    print("Sinh vien undergraduate co GPA cao nhat:")
-    for student in top_undergraduate_students:
-        print(f"Student ID: {student.getStudentID()} - Student Name: {student.getName()} with GPA: {student.getGPA()}")
+    print("Sinh viên đại học có GPA cao nhất:")
     print("-----------------------")
+    for student in top_undergraduate_students:
+        print(f"Mã sinh viên: {student.getStudentID()} - Tên sinh viên: {student.getName()} với GPA: {student.getGPA()}\n")
+   
     """Cau 6: Xet tot nghiep """
-    print("Ket qua xet tot nghiep:")
+    print("Kết quả xét tốt nghiệp:")
     for student in listStudent:
         if student.graduationEligibility():
-            print(f"Student ID: {student.getStudentID()} - {student.getName()} is eligible for graduation.")
+            print(f"Mã sinh viên: {student.getStudentID()} - {student.getName()} đủ điều kiện tốt nghiệp.")
         else:
-            print(f"Student ID: {student.getStudentID()} - {student.getName()} is NOT eligible for graduation.")
-        print("-----------------------")
+            print(f"Mã sinh viên: {student.getStudentID()} - {student.getName()} không đủ điều kiện tốt nghiệp.")
+        print("\n")
     """Cau 7: Tim sinh vien chua du dieu kien tot nghiep"""
     not_eligible_students = list(filter(lambda student: not student.graduationEligibility(), listStudent))
-    print("Sinh vien chua du dieu kien tot nghiep:")
+    print("Sinh viên chưa đủ điều kiện tốt nghiệp:")
     for student in not_eligible_students:
-        print(f"Student ID: {student.getStudentID()} - Student Name: {student.getName()}")
-        print("-----------------------")
+        print(f"Mã sinh viên: {student.getStudentID()} - Tên sinh viên: {student.getName()}")
+        print("\n")
     print("-----------------------")
     """Cau 8: Tim sinh vien du dieu kien tot nghiep"""
     eligible_students = list(filter(lambda student: student.graduationEligibility(), listStudent))
-    print("Sinh vien du dieu kien tot nghiep:")
+    print("Sinh viên đủ điều kiện tốt nghiệp:")
     for student in eligible_students:
-        print(f"Student ID: {student.getStudentID()} - Student Name: {student.getName()}")
-        print("-----------------------")
+        print(f"Mã sinh viên: {student.getStudentID()} - Tên sinh viên: {student.getName()}")
+        print("\n")
     print("-----------------------")
 
 
