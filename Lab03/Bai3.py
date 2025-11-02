@@ -92,15 +92,12 @@ if __name__ == "__main__":
             print("-----------------------")
     """Cau 5: Tim sinh vien undergraduate co GPA cao nhat"""
     top_undergraduate = None
-    highestStudentGPA = []
-    highest_gpa = max((student.getGPA() for student in listStudent if isinstance(student, undergraduateStudent)), default=None)
-
-    for student in listStudent:
-        if isinstance(student, undergraduateStudent) and student.getGPA() == highest_gpa:
-            highestStudentGPA.append(student)
-
-    for student in highestStudentGPA:
-        print(f"Student ID: {student.getStudentID()}, Name: {student.getName()}, GPA: {student.getGPA()}")
+    undergraduateStudents = list(filter(lambda s: isinstance(s, undergraduateStudent), listStudent))
+    highest_gpa = max(undergraduateStudents, key=lambda s: s.getGPA()).getGPA()
+    top_undergraduate_students = list(filter(lambda s: s.getGPA() == highest_gpa, undergraduateStudents))
+    print("Sinh vien undergraduate co GPA cao nhat:")
+    for student in top_undergraduate_students:
+        print(f"Student ID: {student.getStudentID()} - Student Name: {student.getName()} with GPA: {student.getGPA()}")
     print("-----------------------")
     """Cau 6: Xet tot nghiep """
     print("Ket qua xet tot nghiep:")
@@ -111,18 +108,18 @@ if __name__ == "__main__":
             print(f"Student ID: {student.getStudentID()} - {student.getName()} is NOT eligible for graduation.")
         print("-----------------------")
     """Cau 7: Tim sinh vien chua du dieu kien tot nghiep"""
+    not_eligible_students = list(filter(lambda student: not student.graduationEligibility(), listStudent))
     print("Sinh vien chua du dieu kien tot nghiep:")
-    for student in listStudent:
-        if not student.graduationEligibility():
-            print(f"Student ID: {student.getStudentID()} - {student.getName()}")
-            print("-----------------------")
+    for student in not_eligible_students:
+        print(f"Student ID: {student.getStudentID()} - Student Name: {student.getName()}")
+        print("-----------------------")
     print("-----------------------")
     """Cau 8: Tim sinh vien du dieu kien tot nghiep"""
+    eligible_students = list(filter(lambda student: student.graduationEligibility(), listStudent))
     print("Sinh vien du dieu kien tot nghiep:")
-    for student in listStudent:
-        if student.graduationEligibility():
-            print(f"Student ID: {student.getStudentID()} - {student.getName()}")
-            print("-----------------------")
+    for student in eligible_students:
+        print(f"Student ID: {student.getStudentID()} - Student Name: {student.getName()}")
+        print("-----------------------")
     print("-----------------------")
 
 
